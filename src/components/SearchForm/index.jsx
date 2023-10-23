@@ -3,6 +3,7 @@ import {SearchedShows} from '../';
 
 export default function SearchForm(){
     const [inputValue,setInputValue]=useState("")
+    const [langauge,setlangauge]=useState("")
     const [searchString,setSearchString] = useState("Arrow")
     const [showData,setShowData]= useState([])
 
@@ -30,11 +31,21 @@ export default function SearchForm(){
         searchAPI()
     },[searchString])
 
+    function handleLanguage(e) {
+        setlangauge(e.target.value)
+      }
+
     return (
         <>
             <form onSubmit={handleSumbit}>
                 <input type="text" required onChange={handleInput} value={inputValue}/>
                 <input type="submit" value="Search" />
+                <select onChange={handleLanguage}>
+                    <option value="all">All</option>
+                    <option value="English">English</option>
+                    <option value="Japanese">Japanese</option>
+                </select>
+
             </form>
             
             <SearchedShows showData={showData}/>
