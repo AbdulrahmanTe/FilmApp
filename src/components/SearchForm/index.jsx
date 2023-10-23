@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ShowCard from "../ShowCard";
+import {SearchedShows} from '../';
 
 export default function SearchForm(){
     const [inputValue,setInputValue]=useState("")
@@ -22,7 +22,7 @@ export default function SearchForm(){
             const data = await response.json()
             //console.log(data)
             const showData = data.map(s => s.show)
-            //console.log(showData)
+            console.log(showData)
             setShowData(showData)
             
         }
@@ -37,7 +37,8 @@ export default function SearchForm(){
                 <input type="submit" value="Search" />
             </form>
             
-            {showData.map(s => s.image ? <ShowCard show={s} key= {s.id}></ShowCard> : "")}
+            <SearchedShows showData={showData}/>
+            
         </>
       );
 }
